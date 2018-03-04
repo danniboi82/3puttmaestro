@@ -1,0 +1,23 @@
+{
+  "name": "fullstackdevpractice",
+  "version": "1.0.0",
+  "description": "Front/Backend practice",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danniboi82/fullStackDevPractice.git"
+  },
+  "author": "DanO",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danniboi82/fullStackDevPractice/issues"
+  },
+  "homepage": "https://github.com/danniboi82/fullStackDevPractice#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2"
+  }
+}

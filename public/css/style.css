@@ -1,0 +1,23 @@
+body{
+    margin: 0px;
+    text-align: center;
+}
+
+.imgDiv{
+    width: 250px; 
+    height: 250px;
+}
+
+.courseImg{
+    max-height: 100%;
+    max-width: 100%;
+}
+
+li.golfCourseList{
+    list-style: none;
+    display: inline-block;
+}
+
+.courseDiv, .imgDiv{
+    margin: 5px auto;
+}

@@ -1,0 +1,20 @@
+<% include partials/navbar %>
+
+    <h1>Golf Courses</h1>
+
+    <div class="container">
+        <div class="row">
+            <% golfcourses.forEach(place => { %>
+                <div class="col-sm-4">
+                    <div class='imgDiv'>
+                        <img class='courseImg' src="<%= place.image %>" alt="">
+                    </div>
+                    <h4 class='courseDiv'>
+                        <%= place.name %>
+                    </h4>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+
+    <% include partials/footer %>
