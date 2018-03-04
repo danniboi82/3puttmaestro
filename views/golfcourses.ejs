@@ -1,17 +1,23 @@
 <% include partials/navbar %>
-
-    <h1>Golf Courses</h1>
-
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Welcome to GolfChamp</h1>
+            <p>view list of personally experienced golf courses</p>
+            <a class="btn btn-primary btn-sm" href='/golfcourses/new'>Add Golf Course</a>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
             <% golfcourses.forEach(place => { %>
-                <div class="col-sm-4">
-                    <div class='imgDiv'>
-                        <img class='courseImg' src="<%= place.image %>" alt="">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="thumbnail">
+                        <div class='imgDiv'>
+                            <img class='courseImg' src="<%= place.image %>" alt="">
+                        </div>
+                        <h4 class='courseDiv'>
+                            <%= place.name %>
+                        </h4>
                     </div>
-                    <h4 class='courseDiv'>
-                        <%= place.name %>
-                    </h4>
                 </div>
                 <% }) %>
         </div>
