@@ -5,7 +5,7 @@ body{
 }
 
 .imgDiv{
-    width: 350px; 
+    width: 100%; 
     height: 150px;
 }
 
@@ -25,9 +25,20 @@ li.golfCourseList{
     margin: 5px auto;
 }
 
+.formWrapper{
+    width: 33.3%;
+    margin: 25px auto;
+}
+
 footer{
     background-color: black;
     color: white;
     height: 150px;
     width: 100%;
+}
+
+.detailsWrapper{
+    max-height: 80%;
+    max-width: 90%;
+    margin: 50px auto;
 }

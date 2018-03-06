@@ -10,13 +10,14 @@
         <div class="row">
             <% golfcourses.forEach(place => { %>
                 <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-                    <div class="thumbnail">
+                    <div class="img-thumbnail">
                         <div class='imgDiv'>
                             <img class='courseImg' src="<%= place.image %>" alt="">
                         </div>
-                        <h4 class='courseDiv'>
+                        <div class='caption courseDiv'>
                             <%= place.name %>
-                        </h4>
+                        </div>
+                        <a href="/golfcourses/<%= place._id %>" class="btn btn-small btn-primary">More Info</a>
                     </div>
                 </div>
                 <% }) %>

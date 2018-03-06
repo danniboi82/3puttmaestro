@@ -1,0 +1,26 @@
+<% include partials/navbar %>
+
+    <h1>
+        <%= course.name %>
+    </h1>
+
+    <div class="container">
+        <div class="detailsWrapper">
+            <div class="imgDiv">
+                <img src="<%= course.image %>" alt="" class='courseImg'>
+            </div>
+            <div class="detailsDiv">
+                <h3>
+                    <%= course.description %>
+                </h3>
+                <h6>
+                    <%= course.phoneNumber %>
+                </h6>
+                <h6>
+                    <%= course.location %>
+                </h6>
+            </div>
+        </div>
+    </div>
+
+    <% include partials/footer %>
