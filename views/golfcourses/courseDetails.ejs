@@ -1,4 +1,4 @@
-<% include partials/navbar %>
+<% include ../partials/navbar %>
 
     <h1>
         <%= course.name %>
@@ -19,8 +19,14 @@
                 <h6>
                     <%= course.location %>
                 </h6>
+                <% course.comments.forEach(comment=>{ %>
+                    <p> <%= comment.author %></p>
+                <p> <%= comment.text %></p>
+            <% }) %>
+            <a href="/golfcourses/<%= course._id %>/comments/new" class="btn btn-info" role="button">Edit</a>
+            <button class='btn btn-default'>Delete</button>
             </div>
         </div>
     </div>
 
-    <% include partials/footer %>
+    <% include ../partials/footer %>
