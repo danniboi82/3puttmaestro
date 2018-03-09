@@ -4,7 +4,7 @@ let Courses = require('../model/courseModel');
 let Comment = require('../model/commentModel');
 
 
-//INDEX
+//NEW - create a form on path below where it will gather input(data) and use to create below on POST
 router.get('/golfcourses/:id/comments/new', (req, res) => {
     Courses.findById(req.params.id, (error, course) => {
         if (error) {

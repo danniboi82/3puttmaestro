@@ -21,7 +21,7 @@ li.golfCourseList{
     display: inline-block;
 }
 
-.courseDiv, .imgDiv{
+.courseDiv{
     margin: 5px auto;
 }
 
@@ -38,7 +38,9 @@ footer{
 }
 
 .detailsWrapper{
-    max-height: 80%;
-    max-width: 90%;
     margin: 50px auto;
+}
+
+.addCommentButton{
+    margin-bottom: 15px;
 }
