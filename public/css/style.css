@@ -4,6 +4,10 @@ body{
     height: 100%
 }
 
+.headerText{
+    font-family: 'Lobster', cursive;
+}
+
 .imgDiv{
     width: 100%; 
     height: 150px;
@@ -57,4 +61,17 @@ footer{
 .commentWrapper{
     border: 1px solid rgb(224, 77, 77);
     max-width: 90%;
+}
+
+.row{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.imgWrapper{
+    margin: 20px 0px;
+}
+
+.moreInfo{
+    margin-bottom: 15px;
 }

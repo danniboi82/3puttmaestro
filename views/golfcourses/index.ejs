@@ -1,15 +1,16 @@
 <% include ../partials/navbar %>
     <div class="container">
+        <br>
         <div class="jumbotron">
-            <h1>Welcome to GolfChamp</h1>
-            <p>view list of personally experienced golf courses</p>
-            <a class="btn btn-primary btn-sm" href='/golfcourses/new'>Add Golf Course</a>
+            <h1 class='headerText'><img src="/images/golf_icon_medium.png" alt=""></i>Welcome to 3PUTT Maestro!</h1>
+            <p>Home of the masters in 3 putts!! Not an easy task!</p>
+            <a class="btn btn-primary btn-lg" href='/golfcourses/new'>Add Golf Course</a>
         </div>
     </div>
     <div class="container">
         <div class="row">
             <% golfcourses.forEach(place => { %>
-                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4 imgWrapper">
                     <div class="img-thumbnail" style="padding: 0">
                         <div class='imgDiv'>
                             <img class='courseImg' src="<%= place.image %>" alt="">
@@ -17,7 +18,7 @@
                         <div class='caption courseDiv'>
                             <%= place.name %>
                         </div>
-                        <a href="/golfcourses/<%= place._id %>" class="btn btn-small btn-primary">More Info</a>
+                        <a href="/golfcourses/<%= place._id %>" class="btn btn-sm btn-primary moreInfo">More Info</a>
                     </div>
                 </div>
                 <% }) %>
