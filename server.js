@@ -1,6 +1,6 @@
 let express = require('express');
 let app = express();
-let PORT = 3000;
+// let PORT = 3000;
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 let seedDB = require('./seeds');
@@ -17,8 +17,9 @@ let flash = require('connect-flash');
 
 // seedDB(); //Seed the database
 
-mongoose.connect("mongodb://localhost/golfCourses");
+// mongoose.connect("mongodb://localhost/golfCourses");
 
+mongoose.connect("mongodb://heroku_1xgmdxx6:b7651sla472ico5mmf37g5pe8e@ds113169.mlab.com:13169/heroku_1xgmdxx6");
 app.set('view engine', 'ejs');
 app.use(flash());
 app.use(expressSession({
@@ -50,6 +51,6 @@ app.use('/', userRoutes);
 app.use('/golfcourses', courseRoutes);
 app.use('/golfcourses/:id/comments', commentRoutes);
 
-app.listen(PORT, () => {
-    console.log("YOU ARE ON PORT 3000")
+app.listen(process.env.PORT || 3000, () => {
+    console.log("YOU ARE ON PORT " + JSON.stringify(process.env));
 })

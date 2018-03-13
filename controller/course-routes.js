@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
             res.render('golfcourses/index', {
                 golfcourses: allCourse
             });
-            console.log(golfcourses._id, "YAYAY");
+            console.log("YAYAY");
         }
     })
 });
