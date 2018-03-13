@@ -1,5 +1,31 @@
 <% include ../partials/navbar %>
 
-<h1>edit page</h1>
+<div class="row">
+        <div class="container">
+            <h2>Edit <%= course.name %></h2>
+            <div class="formWrapper">
+                <form action="/golfcourses/<%= course._id %>?_method=PUT" method="POST">
+                    <div class="form-group">
+                        <input class='form-control' type="text" name="name" value="<%= course.name %>">
+                    </div>
+                    <div class="form-group">
+                        <input class='form-control' name="description" type="text" value="<%= course.description %>">
+                    </div>
+                    <div class="form-group">
+                        <input class='form-control' name="location" type="text" value="<%= course.location %>">
+                    </div>
+                    <div class="form-group">
+                        <input class='form-control' name="phoneNumber" type="text" value="<%= course.phoneNumber %>">
+                    </div>
+                    <div class="form-group">
+                        <input class='form-control' name="image" type="text" value="<%= course.image %>">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-<% include ../partials/footer %>
+    <% include ../partials/footer %>

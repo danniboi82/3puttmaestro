@@ -26,14 +26,29 @@
                         </div>
                         <div class="card-body">
                             <p class='card-text'>
+                                <em>Submitted By :
+                                    <b>
+                                        <%= course.author.username %>
+                                    </b>
+                                </em>
+                            </p>
+                            <p class='card-text'>
                                 <%= course.description %>
                             </p>
                             <p class='card-text'>
-                               <strong>Location :</strong> <%= course.location %> 
+                                <strong>Location :</strong>
+                                <%= course.location %>
                             </p>
                             <p class='card-text'>
-                                <strong>Phone Number :</strong> <%= course.phoneNumber %>
+                                <strong>Phone Number :</strong>
+                                <%= course.phoneNumber %>
                             </p>
+                            <% if(currentUser && course.author.id.equals(currentUser._id)){ %>
+                                <a class='btn btn-sm btn-outline-warning' href="/golfcourses/<%= course._id %>/edit" role='button'>Edit Course Info</a>
+                                <form action="/golfcourses/<%= course._id %>?_method=Delete" method="POST" class='deleteForm'>
+                                    <button type="submit" class='btn btn-sm btn-outline-danger'>Delete</button>
+                                </form>
+                                <% } %>
                         </div>
                     </div>
                     <div class="card bg-light">
@@ -44,15 +59,22 @@
                                     <div class="col-md-12 text-left">
                                         <div class="card-body">
                                             <strong>
-                                                <%= comment.author %>
+                                                <%= comment.author.username %>
                                             </strong>
                                             <span class='float-right'>10 days ago</span>
                                             <p>
                                                 <%= comment.text %>
                                             </p>
+                                            <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                                                <a class='btn btn-sm btn-outline-warning' href="/golfcourses/<%= course._id %>/comments/<%= comment._id %>/edit" role='button'>Edit Comment</a>
+                                                <form action="/golfcourses/<%= course._id %>/comments/<%= comment._id %>?_method=Delete" method="POST" class='deleteForm'>
+                                                    <button type="submit" class='btn btn-sm btn-outline-danger'>Delete</button>
+                                                </form>
+                                                <% } %>
                                         </div>
                                     </div>
                                 </div>
+
                                 <hr>
                                 <% }) %>
                         </div>
@@ -60,7 +82,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <% include ../partials/footer %>

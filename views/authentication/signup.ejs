@@ -1,0 +1,16 @@
+<% include ../partials/navbar %>
+
+    <h1>SIGN UP HERE!!</h1>
+    <form action="/signup" method="post">
+        <div class="form-group">
+            <input type="text" name='username' placeholder="user name">
+        </div>
+        <div class="form-group">
+            <input type="password" name='password' placeholder="password">
+        </div>
+        <div class="form-group">
+            <button class='btn btn-md btn-default' type="submit">SIGN UP</button>
+        </div>
+    </form>
+
+    <% include ../partials/footer %>
