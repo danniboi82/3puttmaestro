@@ -13,13 +13,14 @@ let expressSession = require("express-session");
 let User = require('./model/userModel');
 let methodOverride = require('method-override');
 let flash = require('connect-flash');
+require('dotenv').config();
 
 
 // seedDB(); //Seed the database
 
 // mongoose.connect("mongodb://localhost/golfCourses");
 
-mongoose.connect("mongodb://heroku_1xgmdxx6:b7651sla472ico5mmf37g5pe8e@ds113169.mlab.com:13169/heroku_1xgmdxx6");
+mongoose.connect(process.env.MONGODB_URI || process.env.LOCAL_DB);
 app.set('view engine', 'ejs');
 app.use(flash());
 app.use(expressSession({
@@ -52,5 +53,5 @@ app.use('/golfcourses', courseRoutes);
 app.use('/golfcourses/:id/comments', commentRoutes);
 
 app.listen(process.env.PORT || 3000, () => {
-    console.log("YOU ARE ON PORT " + JSON.stringify(process.env));
+    console.log("YOU ARE ON PORT 3000");
 })
