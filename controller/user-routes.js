@@ -23,10 +23,12 @@ router.post('/signup', (req, res)=>{
         username: username,
     }), password, (error, newUser)=>{
         if(error){
+            req.flash("error", error.message)
             console.log(error, "CHECK ERROR AND TRY AGAIN!!");
             return res.render('authentication/signup')
         }
         passport.authenticate("local")(req, res, ()=>{
+            req.flash('success', `Hello ${req.body.username}, You've signed up Successfully!`)
             res.redirect('/golfcourses');
         })
     })
@@ -34,7 +36,7 @@ router.post('/signup', (req, res)=>{
 
 //Sign-in GET POST ROUTE
 router.get('/signin', (req, res)=>{
-    res.render('authentication/signin')
+    res.render('authentication/signin');
 })
 
 router.post('/signin', passport.authenticate("local", {
@@ -50,6 +52,7 @@ router.post('/signin', passport.authenticate("local", {
 
 router.get('/signout', (req, res)=> {
     req.logout();
+    req.flash("success", "You are logged out now");
     res.redirect('/');
 })
 

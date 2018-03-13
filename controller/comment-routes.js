@@ -44,6 +44,7 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
                     course.comments.push(newComment);
                     course.save();
                     //redirect back to campgrounds page
+                    req.flash("success", "Commented SAVED!!!")
                     res.redirect('/golfcourses/' + course._id);
                 };
             });
@@ -88,6 +89,7 @@ router.delete('/:comment_id', middleware.commentAuthor, (req, res)=>{
         if(error){
             res.redirect(`/golfcourses/${req.params.id}`)
         } else {
+            req.flash("error", "Comment has been deleted");
             res.redirect(`/golfcourses/${req.params.id}`)
         }
     })

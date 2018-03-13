@@ -12,6 +12,7 @@ let passport = require('passport');
 let expressSession = require("express-session");
 let User = require('./model/userModel');
 let methodOverride = require('method-override');
+let flash = require('connect-flash');
 
 
 // seedDB(); //Seed the database
@@ -19,6 +20,7 @@ let methodOverride = require('method-override');
 mongoose.connect("mongodb://localhost/golfCourses");
 
 app.set('view engine', 'ejs');
+app.use(flash());
 app.use(expressSession({
     secret: "Bori is lovely",
     resave: false,
@@ -36,8 +38,11 @@ app.use(bodyParser.urlencoded({
 app.use(methodOverride("_method"));
 app.use((req, res, next)=>{
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash('error');
+    res.locals.success = req.flash('success');
     next();
 });
+
 
 
 

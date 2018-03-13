@@ -42,6 +42,7 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
             console.log(error, "YOU SCREWED UP!!");
         } else {
             console.log(saved, "data has been SAVED");
+            req.flash("success", "COURSE ADDED!!!")
             //redirect back to campgrounds page
             res.redirect('/golfcourses');
         }
@@ -94,10 +95,12 @@ router.put('/:id', middleware.courseAuthor, (req, res) => {
         image: req.body.image
     }, (error, updatedCourse) => {
         if (error) {
+            req.flash("error", "Failed to update course")
             console.log("cmon man, check your code")
             res.redirect('/signin');
         } else {
             console.log("여기는 코스 route 의 put method")
+            req.flash("success", "Course updated successfully")
             res.redirect(`/golfcourses/${updatedCourse._id}`);
         }
     })
