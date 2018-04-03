@@ -6,6 +6,7 @@ let courseSchema = new mongoose.Schema({
     description : String,
     phoneNumber : String,
     image: String,
+    createdAt: { type: Date, default: Date.now },
     author: {
         id:{
             type: mongoose.Schema.Types.ObjectId,

@@ -28,7 +28,7 @@
                             <p class='card-text'>
                                 <em>Submitted By :
                                     <b>
-                                        <%= course.author.username %>
+                                        <%= course.author.username %>, <%= moment(course.createdAt).fromNow() %>
                                     </b>
                                 </em>
                             </p>
@@ -61,7 +61,7 @@
                                             <strong>
                                                 <%= comment.author.username %>
                                             </strong>
-                                            <span class='float-right'>10 days ago</span>
+                                            <span class='float-right'><^= moment(comment.createdAt).fromNow() %></span>
                                             <p>
                                                 <%= comment.text %>
                                             </p>

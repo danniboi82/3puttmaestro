@@ -23,9 +23,8 @@ router.post('/signup', (req, res)=>{
         username: username,
     }), password, (error, newUser)=>{
         if(error){
-            req.flash("error", error.message)
             console.log(error, "CHECK ERROR AND TRY AGAIN!!");
-            return res.render('authentication/signup')
+            return res.render('authentication/signup', {error: error.message})
         }
         passport.authenticate("local")(req, res, ()=>{
             req.flash('success', `Hello ${req.body.username}, You've signed up Successfully!`)
