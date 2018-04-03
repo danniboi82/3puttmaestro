@@ -17,7 +17,10 @@
                         <img src="<%= course.image %>" alt="" class='card-im-top img-responsive' style="height: 400px">
                         <div class="card-body">
                             <div class="card-text">
-                                <h4 class='float-right'>$9.00 / night</h4>
+                                <h4 class='float-right'>$
+                                    <%= course.cost %>
+                                        <span class='smallText'> / per round of 18 holes</span>
+                                </h4>
                                 <h4 class='float-left'>
                                     <a href="#">
                                         <%= course.name %>
@@ -89,32 +92,36 @@
     </div>
 
     <script>
-            function initMap() {
-              let lat = <%= course.lat %>;
-              let lng = <%= course.lng %>;
-              let center = {lat: lat, lng: lng };
-              let map = new google.maps.Map(document.getElementById('map'), {
-                  zoom: 8,
-                  center: center,
-                  scrollwheel: false
-              });
-              let contentString = `
+        function initMap() {
+            let lat = <%= course.lat %>;
+            let lng = <%= course.lng %>;
+            let center = {
+                lat: lat,
+                lng: lng
+            };
+            let map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 8,
+                center: center,
+                scrollwheel: false
+            });
+            let contentString =
+                `
                 <strong><%= course.name %><br />
                 <%= course.location %></strong>
                 <p><%= course.description %></p>
               `
-              let infowindow = new google.maps.InfoWindow({
+            let infowindow = new google.maps.InfoWindow({
                 content: contentString
-              });
-              let marker = new google.maps.Marker({
-                  position: center,
-                  map: map
-              });
-              marker.addListener('click', function() {
+            });
+            let marker = new google.maps.Marker({
+                position: center,
+                map: map
+            });
+            marker.addListener('click', function () {
                 infowindow.open(map, marker);
-              });
-            }
-          </script>
-          <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_MAPS_KEY %>&callback=initMap"></script>
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_MAPS_KEY %>&callback=initMap"></script>
 
     <% include ../partials/footer %>

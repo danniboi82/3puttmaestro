@@ -5,6 +5,7 @@ let courseSchema = new mongoose.Schema({
     location : String, 
     lat: Number,
     lng: Number,
+    cost: Number,
     description : String,
     phoneNumber : String,
     image: String,
