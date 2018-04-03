@@ -113,12 +113,15 @@ router.put('/:id', middleware.courseAuthor, (req, res) => {
             req.flash('error', 'Invalid address');
             return res.redirect('back');
         }
+        let lat = data[0].latitude;
+        let lng = data[0].longitude;
+        let location = data[0].formattedAddress;
         Courses.findByIdAndUpdate(req.params.id, {
             name: req.body.name,
             description: req.body.description,
-            location: req.body.location,
-            lat: req.body.lat,
-            lng: req.body.lng,
+            location: location,
+            lat: lat,
+            lng: lng,
             phoneNumber: req.body.phoneNumber,
             image: req.body.image
         }, (error, updatedCourse) => {
