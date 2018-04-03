@@ -2,6 +2,16 @@ let Courses = require('../model/courseModel');
 let express = require('express');
 let router = express.Router();
 let middleware = require('../middleware/middleware');
+let NodeGeocoder = require('node-geocoder');
+
+let options = {
+    provider: 'google',
+    httpAdapter: 'https',
+    apiKey: process.env.GEOCODER_API_KEY,
+    formatter: null
+};
+
+let geocoder = NodeGeocoder(options);
 
 //INDEX
 router.get('/', (req, res) => {
@@ -30,22 +40,33 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
         username: req.user.username,
     }
 
-    Courses.create({
-        name: name,
-        location: location,
-        description: description,
-        phoneNumber: phoneNumber,
-        image: image,
-        author: author
-    }, (error, saved) => {
-        if (error) {
-            console.log(error, "YOU SCREWED UP!!");
-        } else {
-            console.log(saved, "data has been SAVED");
-            req.flash("success", "COURSE ADDED!!!")
-            //redirect back to campgrounds page
-            res.redirect('/golfcourses');
+    geocoder.geocode(req.body.location, function (err, data) {
+        if (err || !data.length) {
+            req.flash('error', 'Invalid address');
+            return res.redirect('back');
         }
+        let lat = data[0].latitude;
+        let lng = data[0].longitude;
+        let location = data[0].formattedAddress;
+        Courses.create({
+            name: name,
+            location: location,
+            lat: lat,
+            lng: lng,
+            description: description,
+            phoneNumber: phoneNumber,
+            image: image,
+            author: author
+        }, (error, saved) => {
+            if (error) {
+                console.log(error, "YOU SCREWED UP!!");
+            } else {
+                console.log(saved, "data has been SAVED");
+                req.flash("success", "COURSE ADDED!!!")
+                //redirect back to campgrounds page
+                res.redirect('/golfcourses');
+            }
+        });
     });
 });
 
@@ -87,22 +108,30 @@ router.get('/:id/edit', middleware.courseAuthor, (req, res) => {
 
 //UPDATE -Post edited data back onto DB
 router.put('/:id', middleware.courseAuthor, (req, res) => {
-    Courses.findByIdAndUpdate(req.params.id, {
-        name: req.body.name,
-        description: req.body.description,
-        location: req.body.location,
-        phoneNumber: req.body.phoneNumber,
-        image: req.body.image
-    }, (error, updatedCourse) => {
-        if (error) {
-            req.flash("error", "Failed to update course")
-            console.log("cmon man, check your code")
-            res.redirect('/signin');
-        } else {
-            console.log("여기는 코스 route 의 put method")
-            req.flash("success", "Course updated successfully")
-            res.redirect(`/golfcourses/${updatedCourse._id}`);
+    geocoder.geocode(req.body.location, function (err, data) {
+        if (err || !data.length) {
+            req.flash('error', 'Invalid address');
+            return res.redirect('back');
         }
+        Courses.findByIdAndUpdate(req.params.id, {
+            name: req.body.name,
+            description: req.body.description,
+            location: req.body.location,
+            lat: req.body.lat,
+            lng: req.body.lng,
+            phoneNumber: req.body.phoneNumber,
+            image: req.body.image
+        }, (error, updatedCourse) => {
+            if (error) {
+                req.flash("error", "Failed to update course")
+                console.log("cmon man, check your code")
+                res.redirect('/signin');
+            } else {
+                console.log("여기는 코스 route 의 put method")
+                req.flash("success", "Course updated successfully")
+                res.redirect(`/golfcourses/${updatedCourse._id}`);
+            }
+        })
     })
 })
 

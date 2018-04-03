@@ -3,6 +3,8 @@ let mongoose = require('mongoose');
 let courseSchema = new mongoose.Schema({
     name: String,
     location : String, 
+    lat: Number,
+    lng: Number,
     description : String,
     phoneNumber : String,
     image: String,

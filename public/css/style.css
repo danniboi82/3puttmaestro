@@ -75,3 +75,8 @@ footer{
 .moreInfo{
     margin-bottom: 15px;
 }
+
+#map{
+    height: 400px;
+    width: 100%
+}
