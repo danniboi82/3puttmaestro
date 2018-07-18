@@ -39,6 +39,7 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
         id: req.user._id,
         username: req.user.username,
     }
+    let cost = req.body.cost
 
     geocoder.geocode(req.body.location, function (err, data) {
         if (err || !data.length) {
@@ -53,6 +54,7 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
             location: location,
             lat: lat,
             lng: lng,
+            cost: cost,
             description: description,
             phoneNumber: phoneNumber,
             image: image,
@@ -116,12 +118,14 @@ router.put('/:id', middleware.courseAuthor, (req, res) => {
         let lat = data[0].latitude;
         let lng = data[0].longitude;
         let location = data[0].formattedAddress;
+        let cost = req.body.cost;
         Courses.findByIdAndUpdate(req.params.id, {
             name: req.body.name,
             description: req.body.description,
             location: location,
             lat: lat,
             lng: lng,
+            cost: cost,
             phoneNumber: req.body.phoneNumber,
             image: req.body.image
         }, (error, updatedCourse) => {

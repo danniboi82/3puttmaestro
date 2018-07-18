@@ -79,3 +79,8 @@ footer{
     height: 400px;
     width: 100%
 }
+
+.smallText{
+    font-weight: normal;
+    font-size: 20px;
+}
