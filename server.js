@@ -18,9 +18,9 @@ require('dotenv').config();
 
 // seedDB(); //Seed the database
 
-mongoose.connect("mongodb://localhost/golfCourses");
+// mongoose.connect("mongodb://localhost/golfCourses");
 
-// mongoose.connect(process.env.MONGODB_URI || process.env.LOCAL_DB);
+mongoose.connect(process.env.MONGODB_URI || process.env.LOCAL_DB);
 app.set('view engine', 'ejs');
 app.use(flash());
 app.use(expressSession({
